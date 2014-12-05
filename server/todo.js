@@ -26,6 +26,7 @@ Meteor.methods({
             description: ''
         });
 
+        console.log(tags);
         _(tags).each(function(i) {
             var newTag = Tags.findOne({text: i});
             if (!newTag) {

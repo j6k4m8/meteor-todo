@@ -95,8 +95,20 @@ Template.show_task_row.events({
     'click .one-day': function() {
         Meteor.call('setDueDate', this._id, moment().add(1, 'd').toDate())
     },
+    'click .two-days': function() {
+        Meteor.call('setDueDate', this._id, moment().add(2, 'd').toDate())
+    },
+    'click .five-days': function() {
+        Meteor.call('setDueDate', this._id, moment().add(5, 'd').toDate())
+    },
     'click .one-hour': function() {
         Meteor.call('setDueDate', this._id, moment().add(1, 'h').toDate())
+    },
+    'click .two-hours': function() {
+        Meteor.call('setDueDate', this._id, moment().add(2, 'h').toDate())
+    },
+    'click .five-hours': function() {
+        Meteor.call('setDueDate', this._id, moment().add(5, 'h').toDate())
     },
 
     'click .complete-indicator': function() {
