@@ -31,12 +31,11 @@ selectPreviousItem = function() {
 
 expandCurrentItem = function() {
     $selectedItem = $selectedItem || _selectFirstItem();
-    $selectedItem.find('.collapser').collapse('show');
+    $selectedItem.find('.collapser').collapse('toggle');
 };
 
 contractCurrentItem = function() {
-    $selectedItem = $selectedItem || _selectFirstItem();
-    $selectedItem.find('.collapser').collapse('hide');
+    $('.collapser').collapse('hide');
 };
 
 
@@ -73,3 +72,7 @@ archiveCompleted = function() {
     console.log('calling');
     Meteor.call('archiveCompleted');
 };
+
+toggleQuestionMarkPopover = function() {
+    $('.qm-pop').slideToggle();
+}

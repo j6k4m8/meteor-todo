@@ -16,6 +16,7 @@ Meteor.methods({
         var text = rawText;
         var tags = rawText.match(/#\w+/g);
         var people = rawText.match(/@\w+/g);
+        var due = rawText.match(/`(.+)`/g);
 
         var newTask = Tasks.insert({
             text: text,

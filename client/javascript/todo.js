@@ -72,7 +72,7 @@ Template.show_task_row.helpers({
     },
 
     complete_string: function() {
-        return this.complete ? moment(this.complete).format('ddd MMM DD, h:mmA') : '';
+        return this.complete ? moment(this.complete).format('ddd MMM DD, h:mmA') : this.due ? moment(this.due).format('ddd MMM DD, h:mmA') : '';
     }
 });
 
@@ -80,7 +80,7 @@ Template.show_task_row.helpers({
 Template.show_task_row.rendered = function() {
     $('.ctag').each(function() {
         this.style.backgroundColor = stringToCSSRGB(this.innerText);
-    })
+    });
 };
 
 Template.show_task_row.events({

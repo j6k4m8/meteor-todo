@@ -10,13 +10,14 @@ Mousetrap.bind('ctrl+enter', function() { completeCurrentItem(); });
 
 
 Mousetrap.bind(['n', 'c'], function(e) { focusAddNewInput(e); });
-Mousetrap.bind('?', function(e) { focusQueryInput(e); });
+Mousetrap.bind('/', function(e) { focusQueryInput(e); });
 
 
 Mousetrap.bind('*', function(e) { toggleCompleteVisible(); });
 
 
 Mousetrap.bind('|', function(e) { archiveCompleted(); });
+Mousetrap.bind('?', function(e) { toggleQuestionMarkPopover(); });
 
 
 

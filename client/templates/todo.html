@@ -3,7 +3,6 @@
 </head>
 
 <body>
-{{> main}}
 </body>
 
 <template name="main">
@@ -11,12 +10,33 @@
         {{> add_new}}
         {{> list_tasks}}
     </div>
+
+    <div class="qm-pop">
+        <h1>Keyboard Shortcuts</h1>
+        <table>
+            <h2>Utilities</h2>
+            <tr><td><kbd>?</kbd></td><td>Show this dialog</td></tr>
+            <h2>Navigation</h2>
+            <tr><td><kbd>j</kbd></td><td>Next item</td></tr>
+            <tr><td><kbd>k</kbd></td><td>Previous item</td></tr>
+            <tr><td><kbd>v</kbd></td><td>Expand current item</td></tr>
+            <tr><td><kbd>V</kbd></td><td>Contract all items</td></tr>
+            <h2>Actions</h2>
+            <tr><td><kbd>#</kbd></td><td>Delete current item</td></tr>
+            <tr><td><kbd>ctrl</kbd>+<kbd>enter</kbd></td><td>Mark current item as completed</td></tr>
+            <tr><td><kbd>n</kbd> or <kbd>c</kbd></td><td>New item</td></tr>
+            <tr><td><kbd>*</kbd></td><td>Toggle visibility of completed items</td></tr>
+            <tr><td><kbd>|</kbd></td><td>Archive completed tasks</td></tr>
+            <tr><td><kbd>/</kbd></td><td>Focus query box</td></tr>
+
+        </table>
+    </div>
 </template>
 
 <template name="add_new">
     <div class="row">
         <input class="input input-lg col-sm-6 col-xs-12 add-new" placeholder="(n)">
-        <input class="input input-lg col-sm-6 col-xs-12 search" placeholder="(?)">
+        <input class="input input-lg col-sm-6 col-xs-12 search" placeholder="(/)">
     </div>
 </template>
 
