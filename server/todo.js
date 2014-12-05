@@ -22,7 +22,8 @@ Meteor.methods({
             parent: undefined,
             due: undefined,
             complete: undefined,
-            created: new Date()
+            created: new Date(),
+            description: ''
         });
 
         _(tags).each(function(i) {
@@ -86,6 +87,14 @@ Meteor.methods({
         _(completed).each(function(task) {
             ArchivedTasks.insert(task);
             Tasks.remove(task._id);
+        });
+    },
+
+    updateDescription: function(taskId, desc) {
+        Tasks.update(taskId, {
+            $set: {
+                description: desc
+            }
         });
     }
 })

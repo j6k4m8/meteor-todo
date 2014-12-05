@@ -101,5 +101,15 @@ Template.show_task_row.events({
 
     'click .complete-indicator': function() {
         Meteor.call('completeTask', this._id)
+    },
+
+    'click .ctag': function(ev) {
+        $('.search').val('#' + ev.target.innerText).keyup();
+    },
+
+    'blur .task-description': function(ev) {
+        Meteor.call('updateDescription', this._id, $(ev.target).html(), function() {
+            ev.target.innerHTML = '';
+        });
     }
 })

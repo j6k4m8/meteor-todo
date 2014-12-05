@@ -8,6 +8,7 @@ Mousetrap.bind('V', function() { contractCurrentItem(); });
 Mousetrap.bind('#', function() { deleteCurrentItem(); });
 Mousetrap.bind('ctrl+enter', function() { completeCurrentItem(); });
 
+
 Mousetrap.bind(['n', 'c'], function(e) { focusAddNewInput(e); });
 Mousetrap.bind('?', function(e) { focusQueryInput(e); });
 

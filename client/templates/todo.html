@@ -37,10 +37,10 @@
         <td>
             <span class="title col-xs-12">{{{text_html}}}</span>
             <div class="col-xs-12 collapser collapse">
+                <br>
                 <div class="col-sm-6 well">
-                    <h2>Due Date</h2>
                     <div class="row">
-                        <input class="input input-md duedate col-xs-8" type="text" placeholder="Due Date (d)" value="{{due}}" />
+                        <input class="input input-md duedate" type="text" placeholder="Due Date (d)" value="{{due}}" />
                         <a href="javascript://" class="btn btn-default btn-sm one-day"><i class="glyphicon glyphicon-calendar"></i>One Day</a>
                         <a href="javascript://" class="btn btn-default btn-sm one-hour"><i class="glyphicon glyphicon-calendar"></i>One Hour</a>
                     </div>
@@ -49,6 +49,8 @@
                 <div class="col-sm-1"></div>
                 <div class="col-sm-5 well">
                     <a href="javascript://" class="btn btn-xs btn-danger delete-task"><i class="glyphicon glyphicon-remove"></i> Delete This Task (#)</a>
+                    <hr>
+                    <div class="task-description" contenteditable>{{{description}}}</div>
                 </div>
             </div>
         </td>

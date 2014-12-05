@@ -31,12 +31,12 @@ selectPreviousItem = function() {
 
 expandCurrentItem = function() {
     $selectedItem = $selectedItem || _selectFirstItem();
-    $selectedItem.find('.collapser').addClass('in');
+    $selectedItem.find('.collapser').collapse('show');
 };
 
 contractCurrentItem = function() {
     $selectedItem = $selectedItem || _selectFirstItem();
-    $selectedItem.find('.collapser').removeClass('in');
+    $selectedItem.find('.collapser').collapse('hide');
 };
 
 
