@@ -1,0 +1,64 @@
+html, body {
+    font-family: monospace;
+    background: #222;
+    font-size: 8pt;
+}
+
+.page {
+    background: fade(#eee, 60);
+    min-height: 100vh;
+}
+
+.title {
+    cursor: pointer;
+}
+
+.ctag {
+    padding: .2em;
+    border-radius: .2em;
+    color: white;
+    transition: box-shadow 0.25s;
+    cursor: pointer;
+    box-shadow: .1em .1em 1px #444;
+
+    &:hover {
+        box-shadow: 0.3em 0.3em 10px #666;
+    }
+}
+
+
+tr.task-row {
+    border-left: 4px solid transparent;
+    background: fade(#eee, 60);
+
+    &.selected {
+        border-left: 4px solid steelblue;
+    }
+    &.complete {
+        color: #999;
+        border-right: 10px solid green;
+        font-style: italic;
+        &:nth-of-type(tr) {
+            border-top: 10px solid red;
+        }
+    }
+
+    .complete-indicator {
+        cursor: pointer;
+    }
+
+}
+
+input {
+    border-radius: 0 !important;
+    border: none;
+    border-top: 1px solid #dedede;
+    border-bottom: 1px solid #dedede;
+    text-align: center;
+    font-family: monospace;
+
+    &:active, &:focus {
+        outline: none;
+        border-left: 4px solid steelblue;
+    }
+}

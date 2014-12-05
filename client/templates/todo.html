@@ -1,0 +1,59 @@
+<head>
+    <title>todo</title>
+</head>
+
+<body>
+{{> main}}
+</body>
+
+<template name="main">
+    <div class="container page">
+        {{> add_new}}
+        {{> list_tasks}}
+    </div>
+</template>
+
+<template name="add_new">
+    <div class="row">
+        <input class="input input-lg col-sm-6 col-xs-12 add-new" placeholder="(n)">
+        <input class="input input-lg col-sm-6 col-xs-12 search" placeholder="(?)">
+    </div>
+</template>
+
+<template name="list_tasks">
+    <table class="table table-hover">
+        <thead>
+        </thead>
+        <tbody>
+            {{#each tasks}}
+                {{> show_task_row}}
+            {{/each}}
+        </tbody>
+    </table>
+</template>
+
+<template name="show_task_row">
+    <tr class="task-row {{complete_to_bool}}" data-id="{{_id}}">
+        <td>
+            <span class="title col-xs-12">{{{text_html}}}</span>
+            <div class="col-xs-12 collapser collapse">
+                <div class="col-sm-6 well">
+                    <h2>Due Date</h2>
+                    <div class="row">
+                        <input class="input input-md duedate col-xs-8" type="text" placeholder="Due Date (d)" value="{{due}}" />
+                        <a href="javascript://" class="btn btn-default btn-sm one-day"><i class="glyphicon glyphicon-calendar"></i>One Day</a>
+                        <a href="javascript://" class="btn btn-default btn-sm one-hour"><i class="glyphicon glyphicon-calendar"></i>One Hour</a>
+                    </div>
+
+                </div>
+                <div class="col-sm-1"></div>
+                <div class="col-sm-5 well">
+                    <a href="javascript://" class="btn btn-xs btn-danger delete-task"><i class="glyphicon glyphicon-remove"></i> Delete This Task (#)</a>
+                </div>
+            </div>
+        </td>
+        <td class="text-right">
+            <small>{{complete_string}} </small><i class="complete-indicator glyphicon glyphicon-{{complete_to_class}}"></i>
+        </td>
+    </tr>
+</template>
