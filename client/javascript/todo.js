@@ -1,8 +1,11 @@
 
 Meteor.startup(function() {
     Meteor.subscribe('tasks', function() { });
+    Meteor.subscribe('tags', function() { });
+    Meteor.subscribe('people', function() { });
     Session.set('query', '');
     Session.set('show_complete', true);
+    lastChunk = '';
 });
 
 
@@ -21,6 +24,50 @@ Template.add_new.events({
             _selectFirstItem();
             $(ev.target).blur();
         }
+    },
+
+    'keyup input': function(ev) {
+        if (ev.target.value.slice(-1) == ' ') {
+            $('.suggestions-container').fadeOut();
+            return;
+        }
+        lastChunk = ev.target.value.trim().split(' ').slice(-1)[0];
+        if (lastChunk[0] == '#') {
+            possibleTags = Tags.find({
+                text: {
+                    $regex: lastChunk + '.*',
+                    $options: 'i'
+                }},
+                {
+                    sort: {
+                        text: 1
+                }
+            }).fetch();
+            Session.set('suggestions', possibleTags);
+            $('.suggestions-container').fadeIn();
+        } else if (lastChunk[0] == '@') {
+            possiblePeople = People.find({
+                text: {
+                    $regex: lastChunk + '.*',
+                    $options: 'i'
+                }}, {
+                sort: {
+                    text: 1
+                }
+            }).fetch();
+            Session.set('suggestions', possiblePeople);
+            $('.suggestions-container').fadeIn();
+        } else {
+            Session.set('suggestions', []);
+            $('.suggestions-container').fadeOut();
+        }
+    }
+});
+
+
+Template.add_new.helpers({
+    suggestions: function() {
+        return Session.get('suggestions');
     }
 });
 

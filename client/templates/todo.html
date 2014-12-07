@@ -35,8 +35,15 @@
 
 <template name="add_new">
     <div class="row">
-        <input class="input input-lg col-sm-6 col-xs-12 add-new" placeholder="(n)">
-        <input class="input input-lg col-sm-6 col-xs-12 search" placeholder="(/)">
+        <input class="input input-lg col-sm-6 col-xs-12 add-new mousetrap" placeholder="(n)">
+        <input class="input input-lg col-sm-6 col-xs-12 search mousetrap" placeholder="(/)">
+    </div>
+    <div class="row suggestions-container">
+        <table class="table table-hover suggestions">
+            {{#each suggestions}}
+                <tr><td>{{text}}</td></tr>
+            {{/each}}
+        </table>
     </div>
 </template>
 
