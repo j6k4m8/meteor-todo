@@ -64,7 +64,7 @@
 </template>
 
 <template name="show_task_row">
-    <tr class="task-row {{complete_to_bool}}" data-id="{{_id}}">
+    <tr class="task-row {{complete_to_bool}} overdue-{{overdue}}" data-id="{{_id}}">
         <td>
             <span class="title col-xs-12">{{{text_html}}}</span>
             <div class="col-xs-12 collapser collapse">
@@ -86,7 +86,7 @@
                 </div>
                 <div class="col-sm-1"></div>
                 <div class="col-sm-5 well">
-                    <a href="javascript://" class="btn btn-xs btn-danger delete-task"><i class="glyphicon glyphicon-remove"></i> Delete This Task (#)</a>
+                    <a href="javascript://" class="btn btn-xs btn-danger delete-task"><i class="glyphicon glyphicon-remove"></i> Delete (#)</a>
                     <hr>
                     <div class="task-description" contenteditable>{{{description}}}</div>
                 </div>

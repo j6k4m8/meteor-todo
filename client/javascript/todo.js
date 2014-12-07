@@ -133,6 +133,14 @@ Template.show_task_row.helpers({
 
     complete_string: function() {
         return this.complete ? moment(this.complete).format('ddd MMM DD, h:mmA') : this.due ? moment(this.due).format('ddd MMM DD, h:mmA') : '';
+    },
+
+    overdue: function() {
+        if (!!this.complete) return 'done';
+        if (this.due < new Date()) return 'true';
+        if (this.due - new Date() < 1000*3600*02) return 'very-soon';
+        if (this.due - new Date() < 1000*3600*24) return 'soon';
+        return 'nope';
     }
 });
 
@@ -144,8 +152,11 @@ Template.show_task_row.rendered = function() {
 };
 
 Template.show_task_row.events({
-    'click .title': function(ev) {
+    'click .title': function(ev, target) {
         $(ev.target).parent().find('.collapser').collapse('toggle');
+        $selectedItem = $(target.firstNode);
+        $('.selected').removeClass('selected');
+        $selectedItem.addClass('selected');
     },
 
     'click .delete-task': function() {
