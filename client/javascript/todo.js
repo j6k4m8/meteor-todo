@@ -4,6 +4,7 @@ Meteor.startup(function() {
         refreshBG();
     });
     Meteor.subscribe('tags', function() { });
+    Meteor.subscribe('associations', function() { });
     Meteor.subscribe('people', function() { });
     Session.set('query', '');
     Session.set('show_complete', true);
