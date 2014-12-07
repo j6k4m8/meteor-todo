@@ -10,24 +10,48 @@ Meteor.publish('people', function() {
     return People.find()
 });
 
+Meteor.publish('associations', function() {
+    return Associations.find()
+});
+
+
+getDueFromString = function(due) {
+    if (!due) return undefined;
+    if (Date.parse(due) > new Date()) return new Date(Date.parse(due));
+    if (Date.parse((new Date()).getFullYear().toString() + due) > new Date()) {
+        return new Date(Date.parse((new Date()).getFullYear().toString() + due))
+    }
+    if (due == 'today') return moment().add(2, 'h').toDate();
+    if (due == 'tomorrow') return moment().add(1, 'd').toDate();
+    if (due.split(' ').length < 2) {
+        var date = new Date();
+        date.setHours(due.split(':')[0]);
+        date.setMinutes(due.split(':')[1]);
+        return date;
+    }
+    return undefined;
+    // if (moment(Date.parse(due)).add(12, 'h').toDate() > new Date()) return moment(Date.parse(due)).add(12, 'h').toDate();
+};
+
 
 Meteor.methods({
     addNewTask: function(rawText) {
         var text = rawText;
         var tags = rawText.match(/#\w+/g);
         var people = rawText.match(/@\w+/g);
-        var due = rawText.match(/`(.+)`/g);
+        var rawDue = rawText.match(/`(.+)`/g);
+        rawDue = !!rawDue && rawDue != [] ? rawDue[0].toString().slice(1, -1) : undefined;
+        due = getDueFromString(rawDue);
 
         var newTask = Tasks.insert({
-            text: text,
+            text: text.replace(/`.*`/gi, ''),
             parent: undefined,
-            due: undefined,
+            due: due,
             complete: undefined,
             created: new Date(),
-            description: ''
+            description: due ? "Date parsed from: " + rawDue : ''
         });
 
-        console.log(tags);
         _(tags).each(function(i) {
             var newTag = Tags.findOne({text: i});
             if (!newTag) {

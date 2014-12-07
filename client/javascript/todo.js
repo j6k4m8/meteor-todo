@@ -16,7 +16,7 @@ refreshBG = function() {
     $('body, html').css({
         'background-color': scaleGoodnessColor(0, Tasks.find().count(), Tasks.find({
             due: {
-                $lt: new Date(),
+                $lt: moment().add(1, 'd').toDate(),
                 $ne: undefined
             },
             complete: undefined
@@ -28,7 +28,7 @@ Template.add_new.events({
     'keyup input.add-new': function(ev) {
         if (ev.keyCode == 13) {
             !!ev.target.value ? Meteor.call('addNewTask', ev.target.value, function() {
-                $(ev.target).val('').blur() ;
+                $(ev.target).val('');
             }) : 1;
         }
     },
@@ -139,7 +139,7 @@ Template.show_task_row.helpers({
     overdue: function() {
         if (!!this.complete) return 'done';
         if (this.due < new Date()) return 'true';
-        if (this.due - new Date() < 1000*3600*02) return 'very-soon';
+        if (this.due - new Date() < 1000*3600*1.5) return 'very-soon';
         if (this.due - new Date() < 1000*3600*24) return 'soon';
         return 'nope';
     }
