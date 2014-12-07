@@ -69,14 +69,21 @@ Mousetrap.bind('?', function(e) {
 
 Mousetrap.bind('tab', function(e) {
     if (inputFocus()) {
-        e.preventDefault();
-
         var $active = $(document.activeElement),
             val = $active.val();
 
-        val = val.trim().split(' ').slice(0, -1).join(' ');
+        if (val.trim() == '') return true;
 
-        $active.val(val + ' ' + Session.get('suggestions')[0].text);
+        e.preventDefault();
+
+        val = val.trim().split(' ').slice(0, -1).join(' ');
+        $active.val(val + ' ' + Session.get('suggestions')[0].text + ' ');
+    }
+});
+
+Mousetrap.bind('esc', function(e) {
+    if (inputFocus()) {
+        $('input').blur();
     }
 });
 

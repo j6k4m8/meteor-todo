@@ -39,12 +39,16 @@
         <input class="input input-lg col-sm-6 col-xs-12 search mousetrap" placeholder="(/)">
     </div>
     <div class="row suggestions-container">
-        <table class="table table-hover suggestions">
+        <table class="suggestions">
             {{#each suggestions}}
-                <tr><td>{{text}}</td></tr>
+                {{>show_suggestion}}
             {{/each}}
         </table>
     </div>
+</template>
+
+<template name="show_suggestion">
+    <tr><td>{{text}}</td></tr>
 </template>
 
 <template name="list_tasks">

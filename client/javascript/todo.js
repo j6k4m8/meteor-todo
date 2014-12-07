@@ -64,7 +64,6 @@ Template.add_new.events({
     }
 });
 
-
 Template.add_new.helpers({
     suggestions: function() {
         return Session.get('suggestions');
