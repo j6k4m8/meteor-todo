@@ -1,6 +1,8 @@
 
 Meteor.startup(function() {
-    Meteor.subscribe('tasks', function() { });
+    Meteor.subscribe('tasks', function() {
+        refreshBG();
+    });
     Meteor.subscribe('tags', function() { });
     Meteor.subscribe('people', function() { });
     Session.set('query', '');
@@ -8,6 +10,18 @@ Meteor.startup(function() {
     lastChunk = '';
 });
 
+
+refreshBG = function() {
+    $('body, html').css({
+        'background-color': scaleGoodnessColor(0, Tasks.find().count(), Tasks.find({
+            due: {
+                $lt: new Date(),
+                $ne: undefined
+            },
+            complete: undefined
+        }).count())
+    });
+};
 
 Template.add_new.events({
     'keyup input.add-new': function(ev) {
@@ -136,6 +150,7 @@ Template.show_task_row.events({
 
     'click .delete-task': function() {
         Meteor.call('deleteTask', this._id);
+        refreshBG();
     },
 
     'click .one-day': function() {
@@ -158,7 +173,8 @@ Template.show_task_row.events({
     },
 
     'click .complete-indicator': function() {
-        Meteor.call('completeTask', this._id)
+        Meteor.call('completeTask', this._id);
+        refreshBG();
     },
 
     'click .ctag': function(ev) {
