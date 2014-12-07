@@ -197,6 +197,10 @@ Template.show_task_row.events({
         Meteor.call('setDueDate', this._id, moment().add(5, 'h').toDate())
     },
 
+    'blur .duedate': function(ev) {
+        Meteor.call('setDueDate', this._id, $(ev.target).val());
+    },
+
     'click .complete-indicator': function() {
         Meteor.call('completeTask', this._id);
         refreshBG();

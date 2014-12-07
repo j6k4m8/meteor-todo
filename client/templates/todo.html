@@ -107,7 +107,7 @@
 
 <template name="person_contact_sheet">
     {{#if primary_email}}
-        <a href="mailto:{{primary_email}}">{{text}}</a>
+        <a href="mailto:{{primary_email}}" target="_blank">{{text}}</a>
     {{else}}
         <input class="email-input input" type="email" placeholder="{{text}}'s Email">
     {{/if}}
