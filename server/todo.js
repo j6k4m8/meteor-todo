@@ -70,7 +70,8 @@ Meteor.methods({
             var newPerson = People.findOne({text: i});
             if (!newPerson) {
                 newPerson = People.insert({
-                    text: i
+                    text: i,
+                    contact: {}
                 });
             }
 
@@ -121,6 +122,12 @@ Meteor.methods({
             $set: {
                 description: desc
             }
+        });
+    },
+
+    setPersonEmail: function(personId, personEmail) {
+        People.update(personId, {
+            $set: { 'contact.email': personEmail }
         });
     }
 })

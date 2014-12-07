@@ -82,7 +82,14 @@
                         <a href="javascript://" class="btn btn-default btn-sm two-days col-xs-4"><i class="glyphicon glyphicon-calendar"></i> Two Days</a>
                         <a href="javascript://" class="btn btn-default btn-sm five-days col-xs-4"><i class="glyphicon glyphicon-calendar"></i> Five Days</a>
                     </div>
-
+                    <div class="row">
+                        <div class="col-xs-12 well">
+                            <h3>People</h3>
+                            {{#each task_association_people}}
+                                {{> person_contact_sheet}}
+                            {{/each}}
+                        </div>
+                    </div>
                 </div>
                 <div class="col-sm-1"></div>
                 <div class="col-sm-5 well">
@@ -96,4 +103,12 @@
             <small>{{complete_string}} </small><i class="complete-indicator glyphicon glyphicon-{{complete_to_class}}"></i>
         </td>
     </tr>
+</template>
+
+<template name="person_contact_sheet">
+    {{#if primary_email}}
+        <a href="mailto:{{primary_email}}">{{text}}</a>
+    {{else}}
+        <input class="email-input input" type="email" placeholder="{{text}}'s Email">
+    {{/if}}
 </template>

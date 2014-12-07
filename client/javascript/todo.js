@@ -142,7 +142,20 @@ Template.show_task_row.helpers({
         if (this.due - new Date() < 1000*3600*1.5) return 'very-soon';
         if (this.due - new Date() < 1000*3600*24) return 'soon';
         return 'nope';
-    }
+    },
+
+    task_association_people: function() {
+        var asscs = Associations.find({
+            task: this._id,
+            person: {$ne: undefined}
+        }).fetch();
+
+        var people = People.find({
+            _id: {$in: _(asscs).pluck('person') }
+        });
+
+        return people;
+    },
 });
 
 
@@ -198,4 +211,19 @@ Template.show_task_row.events({
             ev.target.innerHTML = '';
         });
     }
-})
+});
+
+Template.person_contact_sheet.helpers({
+    primary_email: function() {
+        return this.contact.email;
+    }
+});
+
+
+Template.person_contact_sheet.events = {
+    'keyup .email-input': function(ev) {
+        if (ev.keyCode == 13) {
+            Meteor.call('setPersonEmail', this._id, ev.target.value);
+        }
+    }
+}
