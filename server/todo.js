@@ -49,7 +49,8 @@ Meteor.methods({
             due: due,
             complete: undefined,
             created: new Date(),
-            description: due ? "Date parsed from: " + rawDue : ''
+            description: due ? "Date parsed from: " + rawDue : '',
+            waiting: false
         });
 
         _(tags).each(function(i) {
@@ -121,6 +122,14 @@ Meteor.methods({
         Tasks.update(taskId, {
             $set: {
                 description: desc
+            }
+        });
+    },
+
+    toggleWaiting: function(taskId) {
+        Tasks.update(taskId, {
+            $set: {
+                waiting: !Tasks.findOne(taskId).waiting
             }
         });
     },

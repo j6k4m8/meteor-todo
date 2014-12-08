@@ -44,6 +44,11 @@ tr.task-row {
     }
 
     &.overdue-true { border-right: 10px solid rgba(255, 100, 100, 0.5); }
+    &.overdue-waiting {
+        border-right: 10px solid rgba(100, 100, 250, 0.5);
+        font-style: italic;
+        opacity: 0.4;
+    }
     &.overdue-very-soon { border-right: 10px solid rgba(255, 100, 0, 0.5); }
     &.overdue-soon { border-right: 10px solid rgba(255, 165, 0, 0.5); }
     &.overdue-nope { border-right: 10px solid rgba(150, 250, 250, 0.5); }

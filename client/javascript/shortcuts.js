@@ -91,3 +91,16 @@ Mousetrap.bind('esc', function(e) {
 
 
 
+// Individual tasks:
+
+Mousetrap.bind('e d', function() {
+    if (!inputFocus()) {
+        $selectedItem.find('.description-text').focus();
+    }
+});
+
+Mousetrap.bind('e w', function() {
+    if (!inputFocus()) {
+        Meteor.call('toggleWaiting', $selectedItem.data('id'));
+    }
+});

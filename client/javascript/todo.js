@@ -138,6 +138,7 @@ Template.show_task_row.helpers({
 
     overdue: function() {
         if (!!this.complete) return 'done';
+        if (!!this.waiting) return 'waiting';
         if (this.due < new Date()) return 'true';
         if (this.due - new Date() < 1000*3600*1.5) return 'very-soon';
         if (this.due - new Date() < 1000*3600*24) return 'soon';
