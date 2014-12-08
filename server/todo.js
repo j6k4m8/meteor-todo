@@ -138,5 +138,10 @@ Meteor.methods({
         People.update(personId, {
             $set: { 'contact.email': personEmail }
         });
+    },
+    setPersonPhone: function(personId, personEmail) {
+        People.update(personId, {
+            $set: { 'contact.phone': personEmail }
+        });
     }
 })

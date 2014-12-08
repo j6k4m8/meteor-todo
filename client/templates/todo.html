@@ -83,11 +83,13 @@
                         <a href="javascript://" class="btn btn-default btn-sm five-days col-xs-4"><i class="glyphicon glyphicon-calendar"></i> Five Days</a>
                     </div>
                     <div class="row">
-                        <div class="col-xs-12 well">
-                            <h3>People</h3>
-                            {{#each task_association_people}}
-                                {{> person_contact_sheet}}
-                            {{/each}}
+                        <div class="col-xs-12">
+                            <b>People</b>
+                            <div class="well">
+                                {{#each task_association_people}}
+                                    {{> person_contact_sheet}}
+                                {{/each}}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -106,9 +108,19 @@
 </template>
 
 <template name="person_contact_sheet">
+    <b>{{text}}</b>
+    <p>
     {{#if primary_email}}
-        <a href="mailto:{{primary_email}}" target="_blank">{{text}}</a>
+        <a href="mailto:{{primary_email}}" target="_blank">Email</a>
     {{else}}
         <input class="email-input input" type="email" placeholder="{{text}}'s Email">
     {{/if}}
+    </p>
+    <p>
+    {{#if primary_phone}}
+        <a href="#" target="_blank">SMS</a>
+    {{else}}
+        <input class="phone-input input" type="number" placeholder="{{text}}'s Phone Number">
+    {{/if}}
+    </p>
 </template>

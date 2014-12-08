@@ -180,26 +180,33 @@ Template.show_task_row.events({
     },
 
     'click .one-day': function() {
-        Meteor.call('setDueDate', this._id, moment().add(1, 'd').toDate())
+        Meteor.call('setDueDate', this._id, moment().add(1, 'd').toDate());
+        refreshBG();
     },
     'click .two-days': function() {
-        Meteor.call('setDueDate', this._id, moment().add(2, 'd').toDate())
+        Meteor.call('setDueDate', this._id, moment().add(2, 'd').toDate());
+        refreshBG();
     },
     'click .five-days': function() {
-        Meteor.call('setDueDate', this._id, moment().add(5, 'd').toDate())
+        Meteor.call('setDueDate', this._id, moment().add(5, 'd').toDate());
+        refreshBG();
     },
     'click .one-hour': function() {
-        Meteor.call('setDueDate', this._id, moment().add(1, 'h').toDate())
+        Meteor.call('setDueDate', this._id, moment().add(1, 'h').toDate());
+        refreshBG();
     },
     'click .two-hours': function() {
-        Meteor.call('setDueDate', this._id, moment().add(2, 'h').toDate())
+        Meteor.call('setDueDate', this._id, moment().add(2, 'h').toDate());
+        refreshBG();
     },
     'click .five-hours': function() {
-        Meteor.call('setDueDate', this._id, moment().add(5, 'h').toDate())
+        Meteor.call('setDueDate', this._id, moment().add(5, 'h').toDate());
+        refreshBG();
     },
 
     'blur .duedate': function(ev) {
-        Meteor.call('setDueDate', this._id, $(ev.target).val());
+        Meteor.call('setDueDate', this._id, new Date($(ev.target).val()));
+        refreshBG();
     },
 
     'click .complete-indicator': function() {
@@ -221,6 +228,9 @@ Template.show_task_row.events({
 Template.person_contact_sheet.helpers({
     primary_email: function() {
         return this.contact.email;
+    },
+    primary_phone: function() {
+        return this.contact.phone;
     }
 });
 
@@ -229,6 +239,11 @@ Template.person_contact_sheet.events = {
     'keyup .email-input': function(ev) {
         if (ev.keyCode == 13) {
             Meteor.call('setPersonEmail', this._id, ev.target.value);
+        }
+    },
+    'keyup .phone-input': function(ev) {
+        if (ev.keyCode == 13) {
+            Meteor.call('setPersonPhone', this._id, ev.target.value);
         }
     }
 }
