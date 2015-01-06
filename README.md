@@ -3,6 +3,8 @@ meteor-todo
 
 A simple-to-use but highly expandable to-do list with support for `#tags`, `@people`, due-dates, and archiving.
 
+**This todo list currently *does not* support collaboration or multi-users.** This was an intentional design decision, as I never like having my todo list accessible by others. However, this is Meteor, folks. Adding user accounts is *maybe* a five-line ordeal. Feel free to Pull-Request if you feel strongly about it! 2015 roadmap includes a default-CSS redesign and optional multi-user functionality. Collaboration welcome.
+
 # Usage
 ## Creating a new TODO 
 Type a new todo in the left input (focus it by typing <kbd>n</kbd>). Mark tags with `#`. Indicate people with `@`. Nest due-dates in `` ` `` tick marks.
