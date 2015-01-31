@@ -13,7 +13,8 @@ Mousetrap.bind('k', function() {
     }
 });
 
-Mousetrap.bind('v', function() {
+
+Mousetrap.bind(['v', 'return'], function() {
     if (!inputFocus()) {
         expandCurrentItem();
     }

@@ -123,7 +123,7 @@ Template.show_task_row.helpers({
                         .replace(/@(\w+)/g,
             '<span class="ctag" data-tag="$1">$1</span>');
     },
-
+    
     complete_to_class: function() {
         return this.complete != undefined ? 'check' : 'unchecked';
     },
