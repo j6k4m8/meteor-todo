@@ -231,6 +231,9 @@ Template.person_contact_sheet.helpers({
     },
     primary_phone: function() {
         return this.contact.phone;
+    },
+    primary_facebook: function() {
+        return this.contact.facebook;
     }
 });
 
@@ -244,6 +247,11 @@ Template.person_contact_sheet.events = {
     'keyup .phone-input': function(ev) {
         if (ev.keyCode == 13) {
             Meteor.call('setPersonPhone', this._id, ev.target.value);
+        }
+    },
+    'keyup .facebook-input': function(ev) {
+        if (ev.keyCode == 13) {
+            Meteor.call('setPersonFacebook', this._id, ev.target.value);
         }
     }
 }

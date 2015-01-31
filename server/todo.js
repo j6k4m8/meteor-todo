@@ -130,5 +130,10 @@ Meteor.methods({
         People.update(personId, {
             $set: { 'contact.phone': personEmail }
         });
+    },
+    setPersonFacebook: function(personId, personFacebook) {
+        People.update(personId, {
+            $set: { 'contact.facebook': personFacebook }
+        });
     }
 })

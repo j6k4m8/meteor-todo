@@ -124,4 +124,11 @@
         <input class="phone-input input" type="number" placeholder="{{text}}'s Phone Number">
     {{/if}}
     </p>
+    <p>
+    {{#if primary_facebook}}
+        <a href="https://www.facebook.com/messages/{{primary_facebook}}" target="_blank">Facebook ({{primary_facebook}})</a>
+    {{else}}
+        <input class="facebook-input input" type="text" placeholder="{{text}}'s Facebook">
+    {{/if}}
+    </p>
 </template>
