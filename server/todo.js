@@ -17,6 +17,7 @@ Meteor.publish('associations', function() {
 
 getDueFromString = function(due) {
     if (!due) return undefined;
+    return chrono.parseDate(due);
     if (Date.parse(due) > new Date()) return new Date(Date.parse(due));
     if (Date.parse((new Date()).getFullYear().toString() + due) > new Date()) {
         return new Date(Date.parse((new Date()).getFullYear().toString() + due))
