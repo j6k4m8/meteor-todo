@@ -18,20 +18,6 @@ Meteor.publish('associations', function() {
 getDueFromString = function(due) {
     if (!due) return undefined;
     return chrono.parseDate(due);
-    if (Date.parse(due) > new Date()) return new Date(Date.parse(due));
-    if (Date.parse((new Date()).getFullYear().toString() + due) > new Date()) {
-        return new Date(Date.parse((new Date()).getFullYear().toString() + due))
-    }
-    if (due == 'today') return moment().add(2, 'h').toDate();
-    if (due == 'tomorrow') return moment().add(1, 'd').toDate();
-    if (due.split(' ').length < 2) {
-        var date = new Date();
-        date.setHours(due.split(':')[0]);
-        date.setMinutes(due.split(':')[1]);
-        return date;
-    }
-    return undefined;
-    // if (moment(Date.parse(due)).add(12, 'h').toDate() > new Date()) return moment(Date.parse(due)).add(12, 'h').toDate();
 };
 
 
