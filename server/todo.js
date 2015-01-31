@@ -44,7 +44,8 @@ Meteor.methods({
             var newTag = Tags.findOne({text: i});
             if (!newTag) {
                 newTag = Tags.insert({
-                    text: i
+                    text: i,
+                    color: stringToCSSRGB(text)
                 });
             }
 
@@ -59,7 +60,8 @@ Meteor.methods({
             if (!newPerson) {
                 newPerson = People.insert({
                     text: i,
-                    contact: {}
+                    contact: {},
+                    color: stringToCSSRGB(text)
                 });
             }
 
