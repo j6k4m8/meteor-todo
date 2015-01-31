@@ -33,6 +33,12 @@ Template.add_new.events({
         }
     },
 
+    'submit input.add-new': function(ev) {
+        !!ev.target.value ? Meteor.call('addNewTask', ev.target.value, function() {
+            $(ev.target).val('');
+        }) : 1;
+    },
+
     'keyup input.search': function(ev) {
         Session.set('query', ev.target.value.trim());
         if (ev.keyCode == 13) {
