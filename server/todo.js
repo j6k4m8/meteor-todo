@@ -24,8 +24,9 @@ getDueFromString = function(due) {
 Meteor.methods({
     addNewTask: function(rawText) {
         var text = rawText;
-        var tags = rawText.match(/#\w+/g);
-        var people = rawText.match(/@\w+/g);
+        rawText = " " + rawText;
+        var tags = rawText.match(/\s#\w+/g);
+        var people = rawText.match(/\s@\w+/g);
         var rawDue = rawText.match(/`(.+)`/g);
         rawDue = !!rawDue && rawDue != [] ? rawDue[0].toString().slice(1, -1) : undefined;
         due = getDueFromString(rawDue);
@@ -107,6 +108,13 @@ Meteor.methods({
         });
     },
 
+    updateTitle: function(taskId, title) {
+        Tasks.update(taskId, {
+            $set: {
+                text: title
+            }
+        });
+    },
     updateDescription: function(taskId, desc) {
         Tasks.update(taskId, {
             $set: {

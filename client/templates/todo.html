@@ -7,7 +7,7 @@
 </body>
 
 <template name="main">
-    <div class="container-fluid page">
+    <div class="container page">
         {{> add_new}}
         {{> list_tasks}}
     </div>
@@ -49,10 +49,12 @@
 </template>
 
 <template name="show_suggestion">
-    <tr><td>{{text}}</td></tr>
+    <tr data-sugg-id="{{_id}}"><td>{{text}}</td></tr>
 </template>
 
 <template name="list_tasks">
+    <div class="row">
+    <div class="col-xs-12">
     <table class="table table-hover">
         <thead>
         </thead>
@@ -62,12 +64,14 @@
             {{/each}}
         </tbody>
     </table>
+    </div>
+    </div>
 </template>
 
 <template name="show_task_row">
     <tr class="task-row {{complete_to_bool}} overdue-{{overdue}}" data-id="{{_id}}">
         <td>
-            <span class="title col-xs-12">{{{text_html}}}</span>
+            <span  class="title col-xs-12">{{{text_html}}}</span>
             <div class="col-xs-12 collapser collapse">
                 <br>
                 <div class="col-sm-6 well">

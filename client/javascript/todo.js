@@ -210,6 +210,11 @@ Template.show_task_row.events({
         refreshBG();
     },
 
+    'blur .title': function(ev) {
+        Meteor.call('updateTitle', this._id, $(ev.target).html());
+        $(ev.target).html('');
+    },
+
     'blur .duedate': function(ev) {
         Meteor.call('setDueDate', this._id, new Date($(ev.target).val()));
         refreshBG();
@@ -260,4 +265,26 @@ Template.person_contact_sheet.events = {
             Meteor.call('setPersonFacebook', this._id, ev.target.value);
         }
     }
-}
+};
+
+Template.show_suggestion.events = {
+    'click tr': function(ev) {
+        if ($('.add-new').val().length > 0) {
+            $('.add-new').val(
+                $('.add-new').val()
+                    .split(' ')
+                    .slice(0, -1)
+                    .join(' ')
+                + this.text)
+            .focus();
+        } else {
+            $('.search').val(
+                $('.search').val()
+                    .split(' ')
+                    .slice(0, -1)
+                    .join(' ')
+                + this.text)
+            .focus();
+        }
+    }
+};
