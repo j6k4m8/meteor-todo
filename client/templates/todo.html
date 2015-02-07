@@ -59,7 +59,13 @@
         <thead>
         </thead>
         <tbody>
-            {{#each tasks}}
+            {{#each today_tasks}}
+                {{> show_task_row}}
+            {{/each}}
+            {{#each this_week_tasks}}
+                {{> show_task_row}}
+            {{/each}}
+            {{#each future_tasks}}
                 {{> show_task_row}}
             {{/each}}
         </tbody>

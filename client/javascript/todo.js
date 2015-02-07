@@ -91,32 +91,45 @@ Template.add_new.helpers({
     }
 });
 
-Template.list_tasks.helpers({
-    tasks: function() {
+tasksByTime = function(sel) {
+    var sortOrder = {
+        complete: 1,
+        due: 1,
+        created: -1
+    };
 
-        var sortOrder = {
-            complete: 1,
-            due: 1,
-            created: -1
-        };
-
-        if (Session.get('query')) {
-            return Tasks.find({
-                text: {
-                    $regex : ".*" + Session.get('query').split('').join('.*') + ".*",
-                    $options: 'i'
-                },
-                complete: !Session.get('show_complete') ? {$not: undefined} : {$not: -1}
-            }, {
-                    sort: sortOrder
-                });
-        } else {
-            return Tasks.find({
-                complete: !Session.get('show_complete') ? {$not: undefined} : {$not: -1}
-            }, {
+    if (Session.get('query')) {
+        return Tasks.find({
+            text: {
+                $regex : ".*" + Session.get('query').split('').join('.*') + ".*",
+                $options: 'i'
+            },
+            complete: !Session.get('show_complete') ? {$not: undefined} : {$not: -1}
+        }, {
                 sort: sortOrder
             });
-        }
+    } else {
+        return Tasks.find({
+            complete: !Session.get('show_complete') ? {$not: undefined} : {$not: -1}
+        }, {
+            sort: sortOrder
+        });
+    }
+
+};
+
+
+Template.list_tasks.helpers({
+    today_tasks: function() {
+        return _(tasksByTime().fetch()).filter(function(i) { return (i.due)*1 - (new Date())*1 < (24*60*60*1000); });
+    },
+    
+    this_week_tasks: function() {
+        return _(tasksByTime().fetch()).filter(function(i) { return (i.due)*1 - (new Date())*1 >= 24*60*60*1000 && (i.due)*1 - (new Date())*1 < (24*60*60*1000*7); });
+    },
+
+    future_tasks: function() {
+        return _(tasksByTime().fetch()).filter(function(i) { return (i.due)*1 - (new Date())*1 >= (24*60*60*1000*7); });
     }
 });
 
