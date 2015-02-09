@@ -28,7 +28,8 @@
             <tr><td><kbd>n</kbd> or <kbd>c</kbd></td><td>New item</td></tr>
             <tr><td><kbd>*</kbd></td><td>Toggle visibility of completed items</td></tr>
             <tr><td><kbd>|</kbd></td><td>Archive completed tasks</td></tr>
-            <tr><td><kbd>/</kbd></td><td>Focus query box</td></tr>
+            <tr><td><kbd>m t</kbd></td><td>Change Due-Date to today</td></tr>
+            <tr><td><kbd>e w</kbd></td><td>Mark as 'waiting' (blocked).</td></tr>
 
         </table>
     </div>
@@ -62,6 +63,7 @@
             {{#each today_tasks}}
                 {{> show_task_row}}
             {{/each}}
+            <tr class="rule"><td colspan="2"><hr class="rule-today"></td></tr>
             {{#each this_week_tasks}}
                 {{> show_task_row}}
             {{/each}}

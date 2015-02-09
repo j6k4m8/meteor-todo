@@ -105,3 +105,10 @@ Mousetrap.bind('e w', function() {
         Meteor.call('toggleWaiting', $selectedItem.data('id'));
     }
 });
+
+Mousetrap.bind('m t', function() {
+    if (!inputFocus()) {
+        Meteor.call('setDueDate', $selectedItem.data('id'), moment().add(2, 'h').toDate());
+        refreshBG();
+    }
+});
