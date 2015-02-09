@@ -63,10 +63,11 @@
             {{#each today_tasks}}
                 {{> show_task_row}}
             {{/each}}
-            <tr class="rule"><td colspan="2"><hr class="rule-today"></td></tr>
+            <tr class="rule"><td colspan="2"><span class="rule-today">This Week</span></td></tr>
             {{#each this_week_tasks}}
                 {{> show_task_row}}
             {{/each}}
+            <tr class="rule"><td colspan="2"><span class="rule-today">The Future</span></td></tr>
             {{#each future_tasks}}
                 {{> show_task_row}}
             {{/each}}
