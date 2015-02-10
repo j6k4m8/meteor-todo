@@ -137,10 +137,10 @@ Template.list_tasks.helpers({
 
 Template.show_task_row.helpers({
     text_html: function() {
-        return this.text.replace(/#(\w+)/g,
-            '<span class="ctag" data-tag="$1">$1</span>')
-                        .replace(/@(\w+)/g,
-            '<span class="ctag" data-tag="$1">$1</span>');
+        return this.text.replace(/ #(\w+)/g,
+            ' <span class="ctag" data-tag="$1">$1</span>')
+                        .replace(/ @(\w+)/g,
+            ' <span class="ctag" data-tag="$1">$1</span>');
     },
     
     complete_to_class: function() {
