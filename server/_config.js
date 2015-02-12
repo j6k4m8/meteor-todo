@@ -8,7 +8,10 @@ getTasksInNextNHours = function(n) {
     }).fetch();
 };
 
-if (Meteor.settings.PUSHBULLET_API_KEY) {
+
+if (Meteor.settings.SEND_PUSHBULLET_NOTIFICATIONS && 
+        Meteor.settings.PUSHBULLET_API_KEY) {
+    
     SyncedCron.add({
         name: 'Send notifications to Pushbullet',
         schedule: function(parser) {
