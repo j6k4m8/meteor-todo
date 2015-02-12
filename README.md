@@ -6,6 +6,9 @@ A simple-to-use but highly expandable to-do list with support for `#tags`, `@peo
 **This todo list currently *does not* support collaboration or multi-users.** This was an intentional design decision, as I never like having my todo list accessible by others. However, this is Meteor, folks. Adding user accounts is *maybe* a five-line ordeal. Feel free to Pull-Request if you feel strongly about it! 2015 roadmap includes a default-CSS redesign and optional multi-user functionality. Collaboration welcome.
 
 # Usage
+## Notifications
+After you enter your Pushbullet API key in the `settings.json` file, you will receive an update every six hours with a list of the next six hours' worth of tasks.
+
 ## Creating a new TODO 
 Type a new todo in the left input (focus it by typing <kbd>n</kbd>). Mark tags with `#`. Indicate people with `@`. Nest due-dates in `` ` `` tick marks. Due dates are handled intelligently by the [chrono.js](https://github.com/wanasit/chrono) library, so typing something like "Next friday at 5pm" just *works*.
 ![screenshot 2014-12-26 at 2 05 49 pm](https://cloud.githubusercontent.com/assets/693511/5558955/60b94214-8d08-11e4-8104-f367b351d96c.png)
