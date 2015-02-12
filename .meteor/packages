@@ -13,3 +13,4 @@ mrt:momentjs
 accounts-google
 iron:router
 
+percolate:synced-cron
