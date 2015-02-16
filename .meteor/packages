@@ -10,7 +10,6 @@ jquery
 mrt:bootstrap-3
 less
 mrt:momentjs
-accounts-google
 iron:router
 
 percolate:synced-cron
