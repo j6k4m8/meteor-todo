@@ -4,7 +4,8 @@ getNextNTasks = function(n) {
 
 getTasksInNextNHours = function(n) {
     return Tasks.find({
-        due: {$lt: new Date((new Date())*1 + (n*1000*60*60))}
+        due: {$lt: new Date((new Date())*1 + (n*1000*60*60))},
+        complete: null
     }).fetch();
 };
 
@@ -20,9 +21,10 @@ if (Meteor.settings.SEND_PUSHBULLET_NOTIFICATIONS &&
         job: function() {
             var tasks = getTasksInNextNHours(6);
             pushbullet({
-                "type":  "note",
+                "type":  "link",
                 "title": "todo",
-                "body":  _(tasks).pluck('text').join('\n')
+                "body":  _(tasks).pluck('text').join('\n'),
+                "url": "http://todo.jordan.matelsky.com"
             });
         }
     });
