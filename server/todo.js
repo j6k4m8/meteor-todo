@@ -1,18 +1,7 @@
-Meteor.publish('tasks', function() {
-    return Tasks.find()
-});
-
-Meteor.publish('tags', function() {
-    return Tags.find()
-});
-
-Meteor.publish('people', function() {
-    return People.find()
-});
-
-Meteor.publish('associations', function() {
-    return Associations.find()
-});
+Meteor.publish('tasks', function() { return Tasks.find() });
+Meteor.publish('tags', function() {  return Tags.find() });
+Meteor.publish('people', function() {    return People.find() });
+Meteor.publish('associations', function() {  return Associations.find() });
 
 
 getDueFromString = function(due) {
@@ -37,11 +26,12 @@ Meteor.methods({
             due: due,
             complete: undefined,
             created: new Date(),
-            description: due ? "Date parsed from: " + rawDue : '',
+            description: '',
             waiting: false
         });
 
         _(tags).each(function(i) {
+            i = i.trim();
             var newTag = Tags.findOne({text: i});
             if (!newTag) {
                 newTag = Tags.insert({
@@ -57,6 +47,7 @@ Meteor.methods({
         })
 
         _(people).each(function(i) {
+            i = i.trim();
             var newPerson = People.findOne({text: i});
             if (!newPerson) {
                 newPerson = People.insert({
