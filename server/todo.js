@@ -61,6 +61,8 @@ Meteor.methods({
                 person: newPerson,
                 task: newTask
             });
+
+            return newTask;
         })
     },
 
