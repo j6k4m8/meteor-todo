@@ -137,9 +137,9 @@ Template.list_tasks.helpers({
 
 Template.show_task_row.helpers({
     text_html: function() {
-        return this.text.replace(/ #(\w+)/g,
+        return this.text.replace(/ [@#](\w+)/g,
             ' <span class="ctag" data-tag="$1">$1</span>')
-                        .replace(/ @(\w+)/g,
+                        .replace(/^[@#](\w+)/g,
             ' <span class="ctag" data-tag="$1">$1</span>');
     },
     
