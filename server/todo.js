@@ -1,4 +1,5 @@
 Meteor.publish('tasks', function() { return Tasks.find() });
+Meteor.publish('archived_tasks', function() { return ArchivedTasks.find() });
 Meteor.publish('tags', function() {  return Tags.find() });
 Meteor.publish('people', function() {    return People.find() });
 Meteor.publish('associations', function() {  return Associations.find() });

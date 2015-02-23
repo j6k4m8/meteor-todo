@@ -3,6 +3,9 @@ Meteor.startup(function() {
     Meteor.subscribe('tasks', function() {
         refreshBG();
     });
+    Meteor.subscribe('archived_tasks', function() {
+        refreshBG();
+    });
     Meteor.subscribe('tags', function() { });
     Meteor.subscribe('associations', function() { });
     Meteor.subscribe('people', function() { });
@@ -22,7 +25,21 @@ refreshBG = function() {
             complete: undefined
         }).count())
     });
+    allToday = Tasks.find({
+        due: { $lt: moment().endOf('day').toDate() }
+    }).fetch();
+    allTodayCompleted = ArchivedTasks.find({
+        complete: { $gt: moment().startOf('day').toDate() }
+    }).fetch();
+    var dueToday = _(allToday).where({complete: null}).length,
+        doneToday = allTodayCompleted.length + _(allToday).filter(function(i) { return i.complete > moment().startOf('day') }).length,
+        percentDone = parseInt(100*(doneToday) / (doneToday + dueToday));
+    document.title = "todo [" + doneToday + "|" + dueToday + "] " + percentDone + "%";
 };
+
+setInterval(function() {
+    refreshBG();
+}, 1000);
 
 Template.add_new.events({
     'keyup input.add-new': function(ev) {
