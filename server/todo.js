@@ -18,8 +18,12 @@ Meteor.methods({
         var tags = rawText.match(/\s#\w+/g);
         var people = rawText.match(/\s@\w+/g);
         var rawDue = rawText.match(/`(.+)`/g);
+        var hard = rawText[1] == '!';
         rawDue = !!rawDue && rawDue != [] ? rawDue[0].toString().slice(1, -1) : undefined;
         due = getDueFromString(rawDue);
+
+        text = text.replace(/`.*`/gi, '');
+        if (hard) { text = text.substring(1); }
 
         var newTask = Tasks.insert({
             text: text.replace(/`.*`/gi, ''),
@@ -28,7 +32,8 @@ Meteor.methods({
             complete: undefined,
             created: new Date(),
             description: '',
-            waiting: false
+            waiting: false,
+            hard: hard
         });
 
         _(tags).each(function(i) {
