@@ -87,6 +87,14 @@ Meteor.methods({
         });
     },
 
+    setFuzzyDue: function(taskId, dueDate) {
+        Tasks.update(taskId, {
+            $set: {
+                due: getDueFromString(dueDate)
+            }
+        });
+    },
+
     completeTask: function(taskId) {
         var task = Tasks.findOne(taskId);
         Tasks.update(taskId, {

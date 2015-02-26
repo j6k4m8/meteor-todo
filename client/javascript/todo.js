@@ -193,6 +193,9 @@ Template.show_task_row.helpers({
 
         return people;
     },
+    due: function() {
+        return moment(this.due).calendar();
+    }
 });
 
 
@@ -247,7 +250,7 @@ Template.show_task_row.events({
     },
 
     'blur .duedate': function(ev) {
-        Meteor.call('setDueDate', this._id, new Date($(ev.target).val()));
+        Meteor.call('setFuzzyDue', this._id, ($(ev.target).val()));
         refreshBG();
     },
 
