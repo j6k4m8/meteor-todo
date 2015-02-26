@@ -204,7 +204,7 @@ Template.show_task_row.rendered = function() {
 
 Template.show_task_row.events({
     'click .drop-down': function(ev, target) {
-        ev.target = $(ev.target).parent();
+        ev.target = $(ev.target).parent().parent();
         $(ev.target).parent().find('.collapser').collapse('toggle');
         $selectedItem = $(target.firstNode);
         $('.selected').removeClass('selected');
