@@ -84,11 +84,11 @@
 <template name="show_task_row">
     <tr class="task-row {{complete_to_bool}} hard-{{hard}} overdue-{{overdue}}" data-id="{{_id}}">
         <td>
-            <span class="title col-xs-12"><span class="drop-down">:::</span> {{{text_html}}}</span>
+            <span class="title col-xs-12"><span class="drop-down"><i class="glyphicon glyphicon-th-large drop-down"></i></span> {{{text_html}}}</span>
             <div class="col-xs-12 collapser collapse">
                 <br>
                 <div class="col-sm-6 well">
-                    <div class="row">
+                    <div class="row due-buttons">
                         <input class="input input-sm duedate col-xs-12" type="text" placeholder="Due Date (d)" value="{{due}}" />
                         <hr>
 
