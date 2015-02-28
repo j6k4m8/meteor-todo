@@ -1,4 +1,5 @@
 {
+    // If unset, will default to not pushing notifications (and fail gracefully).
     "PUSHBULLET_API_KEY":                "YOUR_API_KEY",
     "SEND_PUSHBULLET_NOTIFICATIONS":     true
 }
