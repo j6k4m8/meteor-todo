@@ -309,7 +309,7 @@ Template.show_suggestion.events = {
                     .split(' ')
                     .slice(0, -1)
                     .join(' ')
-                + this.text)
+                + " " + this.text)
             .focus();
         } else {
             $('.search').val(
