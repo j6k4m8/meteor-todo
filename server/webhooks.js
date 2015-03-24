@@ -17,6 +17,7 @@ Meteor.methods({
         }
     },
     'getTasks': function(params) {
+        console.log(params);
         if (!params.key) return "No API key specified.";
         if (APIKeys.findOne({key: params.key})) {
             return JSON.stringify(Tasks.find().fetch());

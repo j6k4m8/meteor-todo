@@ -84,12 +84,17 @@ Mousetrap.bind('tab', function(e) {
 
 Mousetrap.bind('esc', function(e) {
     if (inputFocus()) {
-        $('input').blur();
     } else {
         $('.qm-pop').fadeOut();
     }
 });
 
+
+Mousetrap.bind(':', function(e) {
+    if (!inputFocus()) {
+        showCommandBar();
+    }
+});
 
 
 // Individual tasks:
