@@ -1,14 +1,17 @@
 meteor-todo
 ===========
 
-A simple-to-use but highly expandable to-do list with support for `#tags`, `@people`, due-dates, and archiving. Touch- and mobile-friendly.
+A simple-to-use but highly expandable to-do list with support for `#tags`, `@people`, due-dates, and archiving. Touch- and mobile-friendly. Now with API!
 
 **This todo list currently *does not* support collaboration or multi-users.** This was an intentional design decision, as I never like having my todo list accessible by others. However, this is Meteor, folks. Adding user accounts is *maybe* a five-line ordeal. Feel free to Pull-Request if you feel strongly about it! 2015 roadmap includes a default-CSS redesign and optional multi-user functionality. Collaboration welcome.
 
-# New Features (Feb 24)
-- **Touch Events**: Swipe a task right to mark it as complete. Swipe left to procrastinate and push its deadline off to tomorrow.
-- **Smart Titlebar**: Your titlebar now shows more information about your day: `todo [4 | 6] 40%` means that you have completed 4 tasks and have 6 remaining for the day. You're 40% done with your day!
-- **"Hard" Deadlines**: I get into the habit of setting deadlines before the actual due-date of the project, so **prefixing your task with a `!` makes it a hard deadline**: The task shows up with a vivid red left-border to indicate that you should think twice before swiping left!
+# New Features
+- **Mar 14**
+ - API endpoints for [your consideration](https://github.com/j6k4m8/todosh)
+- **Feb 24**
+ - **Touch Events**: Swipe a task right to mark it as complete. Swipe left to procrastinate and push its deadline off to tomorrow.
+ - **Smart Titlebar**: Your titlebar now shows more information about your day: `todo [4 | 6] 40%` means that you have completed 4 tasks and have 6 remaining for the day. You're 40% done with your day!
+ - **"Hard" Deadlines**: I get into the habit of setting deadlines before the actual due-date of the project, so **prefixing your task with a `!` makes it a hard deadline**: The task shows up with a vivid red left-border to indicate that you should think twice before swiping left!
 
 # Usage
 ## Notifications
