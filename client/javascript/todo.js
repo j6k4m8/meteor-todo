@@ -243,12 +243,15 @@ Template.show_task_row.events({
         Meteor.call('setDueDate', this._id, moment().add(5, 'h').toDate());
         refreshBG();
     },
-
-    'blur .title': function(ev) {
-        Meteor.call('updateTitle', this._id, $(ev.target).html());
-        $(ev.target).html('');
+/*
+    'click .title': function(ev) {
+        $(ev.target).attr('contenteditable', true);
     },
-
+    'blur .title': function(ev) {
+        Meteor.call('updateTitle', this._id, $(ev.target).text());
+        $(ev.target).removeAttr('contenteditable');
+    },
+*/
     'blur .duedate': function(ev) {
         Meteor.call('setFuzzyDue', this._id, ($(ev.target).val()));
         refreshBG();
