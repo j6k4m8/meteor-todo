@@ -2,7 +2,6 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700);
 
 html, body {
-    font-family: "Ubuntu Mono", monospace;
     background: #222;
     transition: all 1s;
     zoom: 1;
@@ -10,7 +9,7 @@ html, body {
 }
 
 .page {
-    background: fade(#eee, 60);
+    background: white;
     max-width: 52em;
 }
 
@@ -72,21 +71,13 @@ tr.task-row {
 }
 
 input {
-    border-radius: 0 !important;
     border: none;
-    border-top: 1px solid #dedede;
-    border-bottom: 1px solid #dedede;
     text-align: center;
-    font-family: monospace;
-
-    &:active, &:focus {
-        outline: none;
-        border-left: 4px solid steelblue;
-    }
 }
 
 input.add-new, input.search {
     font-weight: bold;
+    background: white;
 }
 
 

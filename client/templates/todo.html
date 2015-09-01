@@ -42,8 +42,8 @@
 
 <template name="add_new">
     <div class="row">
-        <input class="input input-lg col-sm-6 col-xs-12 add-new mousetrap" placeholder="(n)">
-        <input class="input input-lg col-sm-6 col-xs-12 search mousetrap" placeholder="(/)">
+        <input class="input col m6 s12 add-new mousetrap" type="text" placeholder="(n)">
+        <input class="input col m6 s12 search mousetrap" type="text" placeholder="(/)">
     </div>
     <div class="row suggestions-container">
         <table class="suggestions">
@@ -60,25 +60,25 @@
 
 <template name="list_tasks">
     <div class="row">
-    <div class="col-xs-12">
-    <table class="table table-hover">
-        <thead>
-        </thead>
-        <tbody>
-            {{#each today_tasks}}
-                {{> show_task_row}}
-            {{/each}}
-            <tr class="rule"><td colspan="2"><span class="rule-today">This Week</span></td></tr>
-            {{#each this_week_tasks}}
-                {{> show_task_row}}
-            {{/each}}
-            <tr class="rule"><td colspan="2"><span class="rule-today">The Future</span></td></tr>
-            {{#each future_tasks}}
-                {{> show_task_row}}
-            {{/each}}
-        </tbody>
-    </table>
-    </div>
+        <div class="col s12">
+        <table class="table table-hover">
+            <thead>
+            </thead>
+            <tbody>
+                {{#each today_tasks}}
+                    {{> show_task_row}}
+                {{/each}}
+                <tr class="rule"><td colspan="2"><span class="rule-today">This Week</span></td></tr>
+                {{#each this_week_tasks}}
+                    {{> show_task_row}}
+                {{/each}}
+                <tr class="rule"><td colspan="2"><span class="rule-today">The Future</span></td></tr>
+                {{#each future_tasks}}
+                    {{> show_task_row}}
+                {{/each}}
+            </tbody>
+        </table>
+        </div>
     </div>
 </template>
 
@@ -86,31 +86,31 @@
     <tr class="task-row {{complete_to_bool}} hard-{{hard}} overdue-{{overdue}}" data-id="{{_id}}">
         <td>
             <div class="row">
-                <div class="col-xs-8">
-                    <span class="title col-xs-12"><span class="drop-down"><i class="glyphicon glyphicon-th-large drop-down"></i></span> {{{text_html}}}</span>
+                <div class="col s8">
+                    <span class="title col s12"><span class="drop-down"><i class="glyphicon glyphicon-th-large drop-down"></i></span> {{{text_html}}}</span>
                 </div>
-                <div class="col-xs-4 text-right">
+                <div class="col s4 text-right">
                     <small>{{complete_string}} </small><i class="complete-indicator glyphicon glyphicon-{{complete_to_class}}"></i>
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-12 collapser collapse">
+                <div class="col s12 collapsible" data-collapsible="accordion">
                     <br>
-                    <div class="col-sm-6 well">
+                    <div class="col m6 well">
                         <div class="row due-buttons">
-                            <input class="input input-sm duedate col-xs-12" type="text" placeholder="Due Date (d)" value="{{due}}" />
+                            <input class="input input-sm duedate col s12" type="text" placeholder="Due Date (d)" value="{{due}}" />
                             <hr>
 
-                            <a href="javascript://" class="btn btn-default btn-sm one-hour col-xs-4"><i class="glyphicon glyphicon-calendar"></i> One Hour</a>
-                            <a href="javascript://" class="btn btn-default btn-sm two-hours col-xs-4"><i class="glyphicon glyphicon-calendar"></i> Two Hours</a>
-                            <a href="javascript://" class="btn btn-default btn-sm five-hours col-xs-4"><i class="glyphicon glyphicon-calendar"></i> Five Hours</a>
+                            <a href="javascript://" class="btn btn-default btn-sm one-hour col s4"><i class="glyphicon glyphicon-calendar"></i> One Hour</a>
+                            <a href="javascript://" class="btn btn-default btn-sm two-hours col s4"><i class="glyphicon glyphicon-calendar"></i> Two Hours</a>
+                            <a href="javascript://" class="btn btn-default btn-sm five-hours col s4"><i class="glyphicon glyphicon-calendar"></i> Five Hours</a>
 
-                            <a href="javascript://" class="btn btn-default btn-sm one-day col-xs-4"><i class="glyphicon glyphicon-calendar"></i> One Day</a>
-                            <a href="javascript://" class="btn btn-default btn-sm two-days col-xs-4"><i class="glyphicon glyphicon-calendar"></i> Two Days</a>
-                            <a href="javascript://" class="btn btn-default btn-sm five-days col-xs-4"><i class="glyphicon glyphicon-calendar"></i> Five Days</a>
+                            <a href="javascript://" class="btn btn-default btn-sm one-day col s4"><i class="glyphicon glyphicon-calendar"></i> One Day</a>
+                            <a href="javascript://" class="btn btn-default btn-sm two-days col s4"><i class="glyphicon glyphicon-calendar"></i> Two Days</a>
+                            <a href="javascript://" class="btn btn-default btn-sm five-days col s4"><i class="glyphicon glyphicon-calendar"></i> Five Days</a>
                         </div>
                         <div class="row">
-                            <div class="col-xs-12">
+                            <div class="col s12">
                                 <b>People</b>
                                 <div class="well">
                                     {{#each task_association_people}}
@@ -120,8 +120,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-5 well">
+                    <div class="col m1"></div>
+                    <div class="col m5 well">
                         <a href="javascript://" class="btn btn-xs btn-danger delete-task"><i class="glyphicon glyphicon-remove"></i> Delete (#)</a>
                         <hr>
                         <div class="task-description" contenteditable>{{{description}}}</div>

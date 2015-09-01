@@ -4,10 +4,8 @@
 # but you can also edit it by hand.
 
 meteor-platform
-insecure
 underscore
 jquery
-mrt:bootstrap-3
 less
 mrt:momentjs
 iron:router
@@ -16,4 +14,4 @@ percolate:synced-cron
 http
 accounts-ui
 accounts-password
-chriswessels:hammer
+materialize:materialize
