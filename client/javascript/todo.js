@@ -206,6 +206,11 @@ Template.show_task_row.rendered = function() {
         });
     }, 100);
 
+    $(this.firstNode).find('.dont-collapse').on('click.collapse', function(e) {
+        e.stopPropagation();
+        $(e.target).trigger('escaped-click');
+    });
+
     $('.ctag').each(function() {
         this.style.backgroundColor = stringToCSSRGB(this.innerText);
     });
@@ -213,13 +218,13 @@ Template.show_task_row.rendered = function() {
 };
 
 Template.show_task_row.events({
-    'click .drop-down': function(ev, target) {
-        ev.target = $(ev.target).parent().parent();
-        $(ev.target).parent().find('.collapser').collapse('toggle');
-        $selectedItem = $(target.firstNode);
-        $('.selected').removeClass('selected');
-        $selectedItem.addClass('selected');
-    },
+    // 'click .drop-down': function(ev, target) {
+    //     ev.target = $(ev.target).parent().parent();
+    //     $(ev.target).parent().find('.collapser').collapse('toggle');
+    //     $selectedItem = $(target.firstNode);
+    //     $('.selected').removeClass('selected');
+    //     $selectedItem.addClass('selected');
+    // },
 
     'click .delete-task': function() {
         Meteor.call('deleteTask', this._id);
@@ -264,7 +269,7 @@ Template.show_task_row.events({
         refreshBG();
     },
 
-    'click .complete-indicator': function() {
+    'escaped-click .complete-indicator': function() {
         Meteor.call('completeTask', this._id);
         refreshBG();
     },
