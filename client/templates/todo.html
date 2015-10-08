@@ -7,9 +7,9 @@
 </body>
 
 <template name="main">
-    {{#unless currentUser}}
+    <!-- {{#unless currentUser}} REMOVE
         {{> loginButtons }}
-    {{else}}
+    {{else}} -->
     <div class="container page">
         {{> add_new}}
         {{> list_tasks}}
@@ -37,7 +37,7 @@
         </table>
     </div>
     {{> command_bar}}
-    {{/unless}}
+    <!-- {{/unless}} -->
 </template>
 
 <template name="add_new">
@@ -61,29 +61,92 @@
 <template name="list_tasks">
     <div class="row">
         <div class="col s12">
-        <table class="table table-hover">
-            <thead>
-            </thead>
-            <tbody>
+            <ul class="collapsible">
                 {{#each today_tasks}}
                     {{> show_task_row}}
                 {{/each}}
-                <tr class="rule"><td colspan="2"><span class="rule-today">This Week</span></td></tr>
+            </ul>
+            <span class="rule-today">This Week</span>
+            <ul class="collapsible">
                 {{#each this_week_tasks}}
                     {{> show_task_row}}
                 {{/each}}
-                <tr class="rule"><td colspan="2"><span class="rule-today">The Future</span></td></tr>
+            </ul>
+            <span class="rule-today">The Future</span>
+            <ul class="collapsible">
                 {{#each future_tasks}}
                     {{> show_task_row}}
                 {{/each}}
-            </tbody>
-        </table>
+            </ul>
+            <!-- <table class="table table-hover">
+                <thead>
+                </thead>
+                <tbody>
+                    {{#each today_tasks}}
+                        {{> show_task_row}}
+                    {{/each}}
+                    <tr class="rule"><td colspan="2"><span class="rule-today">This Week</span></td></tr>
+                    {{#each this_week_tasks}}
+                        {{> show_task_row}}
+                    {{/each}}
+                    <tr class="rule"><td colspan="2"><span class="rule-today">The Future</span></td></tr>
+                    {{#each future_tasks}}
+                        {{> show_task_row}}
+                    {{/each}}
+                </tbody>
+            </table> REMOVE-->
         </div>
     </div>
 </template>
 
 <template name="show_task_row">
-    <tr class="task-row {{complete_to_bool}} hard-{{hard}} overdue-{{overdue}}" data-id="{{_id}}">
+    <li>
+        <div class="collapsible-header">
+          <div class="row">
+              <div class="col s8">
+                  <span class="title col s12"><span class="drop-down"><i class="glyphicon glyphicon-th-large drop-down"></i></span> {{{text_html}}}</span>
+              </div>
+              <div class="col s4 text-right">
+                  <small>{{complete_string}} </small><i class="complete-indicator glyphicon glyphicon-{{complete_to_class}}"></i>
+              </div>
+          </div>
+        </div>
+        <div class="collapsible-body">
+          <div class="row">
+                  <div class="col m6 well">
+                      <div class="row due-buttons">
+                          <input class="input input-sm duedate col s12" type="text" placeholder="Due Date (d)" value="{{due}}" />
+                          <hr>
+
+                          <a href="javascript://" class="btn btn-default btn-sm one-hour col s4"><i class="glyphicon glyphicon-calendar"></i> One Hour</a>
+                          <a href="javascript://" class="btn btn-default btn-sm two-hours col s4"><i class="glyphicon glyphicon-calendar"></i> Two Hours</a>
+                          <a href="javascript://" class="btn btn-default btn-sm five-hours col s4"><i class="glyphicon glyphicon-calendar"></i> Five Hours</a>
+
+                          <a href="javascript://" class="btn btn-default btn-sm one-day col s4"><i class="glyphicon glyphicon-calendar"></i> One Day</a>
+                          <a href="javascript://" class="btn btn-default btn-sm two-days col s4"><i class="glyphicon glyphicon-calendar"></i> Two Days</a>
+                          <a href="javascript://" class="btn btn-default btn-sm five-days col s4"><i class="glyphicon glyphicon-calendar"></i> Five Days</a>
+                      </div>
+                      <div class="row">
+                          <div class="col s12">
+                              <b>People</b>
+                              <div class="well">
+                                  {{#each task_association_people}}
+                                      {{> person_contact_sheet}}
+                                  {{/each}}
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col m1"></div>
+                  <div class="col m5 well">
+                      <a href="javascript://" class="btn btn-xs btn-danger delete-task"><i class="glyphicon glyphicon-remove"></i> Delete (#)</a>
+                      <hr>
+                      <div class="task-description" contenteditable>{{{description}}}</div>
+                  </div>
+          </div>
+        </div>
+    </li>
+    <!-- <tr class="task-row {{complete_to_bool}} hard-{{hard}} overdue-{{overdue}}" data-id="{{_id}}"> REMOVE
         <td>
             <div class="row">
                 <div class="col s8">
@@ -129,7 +192,7 @@
                 </div>
             </div>
         </td>
-    </tr>
+    </tr> -->
 </template>
 
 <template name="person_contact_sheet">

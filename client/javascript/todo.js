@@ -140,7 +140,7 @@ Template.list_tasks.helpers({
     today_tasks: function() {
         return _(tasksByTime().fetch()).filter(function(i) { return (i.due)*1 - (new Date())*1 < (24*60*60*1000); });
     },
-    
+
     this_week_tasks: function() {
         return _(tasksByTime().fetch()).filter(function(i) { return (i.due)*1 - (new Date())*1 >= 24*60*60*1000 && (i.due)*1 - (new Date())*1 < (24*60*60*1000*7); });
     },
@@ -159,7 +159,7 @@ Template.show_task_row.helpers({
                         .replace(/^[@#](\w+)/g,
             ' <span class="ctag" data-tag="$1">$1</span>');
     },
-    
+
     complete_to_class: function() {
         return this.complete != undefined ? 'check' : 'unchecked';
     },
@@ -200,9 +200,16 @@ Template.show_task_row.helpers({
 
 
 Template.show_task_row.rendered = function() {
+    Meteor.setTimeout(function () {
+        $('.collapsible').collapsible({
+            accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+        });
+    }, 100);
+
     $('.ctag').each(function() {
         this.style.backgroundColor = stringToCSSRGB(this.innerText);
     });
+
 };
 
 Template.show_task_row.events({
