@@ -16,15 +16,9 @@ Mousetrap.bind('k', function() {
 
 Mousetrap.bind(['v', 'return'], function() {
     if (!inputFocus()) {
-        expandCurrentItem();
+        toggleCurrentItem();
     }
 });
-Mousetrap.bind('V', function() {
-    if (!inputFocus()) {
-        contractCurrentItem();
-    }
-});
-
 
 Mousetrap.bind('#', function() {
     if (!inputFocus()) {
