@@ -66,13 +66,13 @@
                     {{> show_task_row}}
                 {{/each}}
             </ul>
-            <span class="rule-today">This Week</span>
+            <span class="rule">This Week</span>
             <ul class="collapsible">
                 {{#each this_week_tasks}}
                     {{> show_task_row}}
                 {{/each}}
             </ul>
-            <span class="rule-today">The Future</span>
+            <span class="rule">The Future</span>
             <ul class="collapsible">
                 {{#each future_tasks}}
                     {{> show_task_row}}
@@ -102,7 +102,7 @@
 <template name="show_task_row">
     <li>
         <div class="collapsible-header">
-          <div class="row">
+          <div class="row task-row {{complete_to_bool}} hard-{{hard}} overdue-{{overdue}}">
               <div class="col s8">
                   <span class="title col s12"><span class="drop-down"><i class="glyphicon glyphicon-th-large drop-down"></i></span> {{{text_html}}}</span>
               </div>
