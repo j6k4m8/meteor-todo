@@ -278,8 +278,8 @@ Template.show_task_row.events({
         $('.search').val('#' + ev.target.innerText).keyup();
     },
 
-    'blur .task-description': function(ev) {
-        Meteor.call('updateDescription', this._id, $(ev.target).html(), function() {
+    'blur #task-description': function(ev) {
+        Meteor.call('updateDescription', this._id, $(ev.target).val(), function() {
             ev.target.innerHTML = '';
         });
     }
