@@ -7,9 +7,9 @@
 </body>
 
 <template name="main">
-    <!-- {{#unless currentUser}} REMOVE
+    {{#unless currentUser}} REMOVE
         {{> loginButtons }}
-    {{else}} -->
+    {{else}}
     <div class="container page">
         {{> add_new}}
         {{> list_tasks}}
@@ -36,7 +36,7 @@
         </table>
     </div>
     {{> command_bar}}
-    <!-- {{/unless}} -->
+    {{/unless}}
 </template>
 
 <template name="add_new">
@@ -125,7 +125,6 @@
                     <div class="card">
                         <div class="card-content">
                             <textarea id="task-description" class="materialize-textarea">{{description}}</textarea>
-                            <!-- <div class="task-description" contenteditable>{{{description}}}</div> -->
                         </div>
                     </div>
                 </div>
