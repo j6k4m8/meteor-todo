@@ -140,7 +140,7 @@ Template.list_tasks.helpers({
     today_tasks: function() {
         return _(tasksByTime().fetch()).filter(function(i) { return (i.due)*1 - (new Date())*1 < (24*60*60*1000); });
     },
-    
+
     this_week_tasks: function() {
         return _(tasksByTime().fetch()).filter(function(i) { return (i.due)*1 - (new Date())*1 >= 24*60*60*1000 && (i.due)*1 - (new Date())*1 < (24*60*60*1000*7); });
     },
@@ -159,7 +159,7 @@ Template.show_task_row.helpers({
                         .replace(/^[@#](\w+)/g,
             ' <span class="ctag" data-tag="$1">$1</span>');
     },
-    
+
     complete_to_class: function() {
         return this.complete != undefined ? 'check' : 'unchecked';
     },
@@ -200,19 +200,31 @@ Template.show_task_row.helpers({
 
 
 Template.show_task_row.rendered = function() {
+    Meteor.setTimeout(function () {
+        $('.collapsible').collapsible({
+            accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+        });
+    }, 100);
+
+    $(this.firstNode).find('.dont-collapse').on('click.collapse', function(e) {
+        e.stopPropagation();
+        $(e.target).trigger('escaped-click');
+    });
+
     $('.ctag').each(function() {
         this.style.backgroundColor = stringToCSSRGB(this.innerText);
     });
+
 };
 
 Template.show_task_row.events({
-    'click .drop-down': function(ev, target) {
-        ev.target = $(ev.target).parent().parent();
-        $(ev.target).parent().find('.collapser').collapse('toggle');
-        $selectedItem = $(target.firstNode);
-        $('.selected').removeClass('selected');
-        $selectedItem.addClass('selected');
-    },
+    // 'click .drop-down': function(ev, target) {
+    //     ev.target = $(ev.target).parent().parent();
+    //     $(ev.target).parent().find('.collapser').collapse('toggle');
+    //     $selectedItem = $(target.firstNode);
+    //     $('.selected').removeClass('selected');
+    //     $selectedItem.addClass('selected');
+    // },
 
     'click .delete-task': function() {
         Meteor.call('deleteTask', this._id);
@@ -257,7 +269,7 @@ Template.show_task_row.events({
         refreshBG();
     },
 
-    'click .complete-indicator': function() {
+    'escaped-click .complete-indicator': function() {
         Meteor.call('completeTask', this._id);
         refreshBG();
     },
@@ -266,8 +278,8 @@ Template.show_task_row.events({
         $('.search').val('#' + ev.target.innerText).keyup();
     },
 
-    'blur .task-description': function(ev) {
-        Meteor.call('updateDescription', this._id, $(ev.target).html(), function() {
+    'blur #task-description': function(ev) {
+        Meteor.call('updateDescription', this._id, $(ev.target).val(), function() {
             ev.target.innerHTML = '';
         });
     }

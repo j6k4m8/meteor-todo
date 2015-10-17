@@ -18,24 +18,20 @@ _refreshSelectView = function() {
 };
 
 selectNextItem = function() {
-    $selectedItem = $selectedItem && !!$selectedItem.next()[0] ? $selectedItem.next() : _selectFirstItem();
+    $selectedItem = $selectedItem && !!$selectedItem.closest("li").next()[0] ? $selectedItem.closest("li").next().find(".task-row") : _selectFirstItem();
 
     _refreshSelectView();
 };
 
 selectPreviousItem = function() {
-    $selectedItem = $selectedItem && !!$selectedItem.prev()[0] ? $selectedItem.prev() : _selectLastItem();
+    $selectedItem = $selectedItem && !!$selectedItem.closest("li").prev()[0] ? $selectedItem.closest("li").prev().find(".task-row") : _selectLastItem();
 
     _refreshSelectView();
 };
 
-expandCurrentItem = function() {
+toggleCurrentItem = function() {
     $selectedItem = $selectedItem || _selectFirstItem();
-    $selectedItem.find('.collapser').collapse('toggle');
-};
-
-contractCurrentItem = function() {
-    $('.collapser').collapse('hide');
+    $selectedItem.trigger('click');
 };
 
 
